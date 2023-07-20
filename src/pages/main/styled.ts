@@ -14,17 +14,45 @@ export const MainPageTitle = styled.h1`
     padding: 0.4rem 0;
 `;
 
-export const MainPageBottomSection = styled.div`
+export const MainPageBottomContainer = styled.div`
     position: absolute;
     bottom: 0;
-    height: 22rem;
-    width: 100%;
-    background-color: white;   
-    border-radius: 1rem 1rem 0 0 ;
     z-index: 99;
     display: flex;
     flex-direction: column;
-    /* row-gap: 2rem; */
+    width: 100% ;
+    border: 1px solid red;
+`;
+
+export const MainPageAddButtonWrapper = styled.div`
+    z-index: 99;
+    justify-self: flex-end;
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: #40AB91;
+    border-radius: 50%;
+    z-index: 99;
+    transition: all 0.2s ease-in-out;
+    &:active{
+        opacity: 0.3;
+    }
+`;
+
+export const MainPageBottomSection = styled.div`
+    position: absolute;
+    bottom: 0;
+    height: 20rem;
+    width: 100%;
+    background-color: white;   
+    border-radius: 1rem 1rem 0 0 ;
+    z-index: 98;
+    display: flex;
+    flex-direction: column; 
     overflow: scroll;
 `;
 
@@ -32,7 +60,7 @@ export const MainPageButtonWrapper = styled.div`
     display: flex;
     position: sticky;
     top: 0;
-    z-index: 99;
+    z-index: 98;
     padding: 2rem 0.6rem 1rem 0.6rem;
     background-color: white;
 `;
