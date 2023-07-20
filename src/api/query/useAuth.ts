@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router';
 export const useAuth = ({ nickname }: RegisterFormValues): UseMutationResult => {
     const navigate = useNavigate();
     return useMutation('useAuth', () => auth({ nickname }), {
+        onSuccess: () => {
+            navigate('/')
+        },
+        onError: (err) => {
+            console.log(err)
+        },
         retry: 0
     })
 

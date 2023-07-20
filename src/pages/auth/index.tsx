@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from "./styled"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { Button } from '@/components';
-import { RegisterFormValues } from '@/api';
+import { RegisterFormValues, useAuth } from '@/api';
 
 export const AuthPage: React.FC = () => {
   const {
@@ -11,10 +11,14 @@ export const AuthPage: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormValues>();
-  const navigate = useNavigate();
 
-  const onValid = () => {
-    navigate('/main')
+  const [username, setUsername] = useState('');
+
+  const { mutate } = useAuth({ nickname: username })
+
+  const onValid = ({ nickname }: RegisterFormValues) => {
+    setUsername(nickname)
+    mutate({})
   }
   return (
     <>
