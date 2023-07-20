@@ -31,7 +31,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "vite --mode dev",
+    "dev": "vite --mode dev --host 0.0.0.0",
     "build": "tsc && vite build --mode prod",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx,json}\" --fix --cache",

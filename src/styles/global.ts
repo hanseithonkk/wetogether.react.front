@@ -37,7 +37,7 @@ body,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   letter-spacing: -0.03em;
 
-  max-width: 380px;
+  max-width: 340px;
   padding: 3em 0;
   margin: 0 auto;
 }
