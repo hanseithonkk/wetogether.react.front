@@ -21,7 +21,6 @@ export const MainPageBottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid red;
 `;
 
 export const MainPageAddButtonWrapper = styled.div`

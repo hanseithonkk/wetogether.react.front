@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import { FaPlus } from 'react-icons/fa';
 
 import { MeetingBox } from '@/components';
+import { useGetGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
 
@@ -27,6 +28,7 @@ export const TAB_LIST: TabListProps[] = [
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
+  const { data } = useGetGroup();
   const { tabName } = useParams<{ tabName: string }>();
 
   const isActive = (activeTab?: string, tabName?: string) => activeTab === tabName;
@@ -68,20 +70,23 @@ export const MainPage: React.FC = () => {
             ))}
           </S.MainPageButtonWrapper>
           <S.MainPageMeetBoxContainer>
-            <MeetingBox
-              title="한세톤 같이 하실 분"
-              place="한세사이버보안고등학교 (0.1km)"
-              joinPeople="2/50명 참여"
-              time="2023년 7월 20일, 15시 00분"
-              id={1}
-            />
-            <MeetingBox
-              title="아침 조깅 같이 하실 분"
-              place="여의도한강공원 (5.7km)"
-              joinPeople="49/50명 참여"
-              time="매일 7시 00분"
-              id={2}
-            />
+            {data?.map(({ id, title, maxUser, users, locationString, meetingDate }) => {
+              const date = new Date(Date.parse(meetingDate));
+              const year = date.getFullYear();
+              const month = date.getMonth();
+              const day = date.getDay();
+              const hour = date.getHours();
+              const minutes = date.getMinutes();
+              return (
+                <MeetingBox
+                  title={title}
+                  place={locationString}
+                  joinPeople={users.length + '/' + maxUser + '명 참여'}
+                  time={`${year}년 ${month}월 ${day}일, ${hour}시 ${minutes}분`}
+                  id={id}
+                />
+              );
+            })}
           </S.MainPageMeetBoxContainer>
         </S.MainPageBottomSection>
       </S.MainPageBottomContainer>
