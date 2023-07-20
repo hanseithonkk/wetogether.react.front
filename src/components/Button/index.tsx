@@ -1,12 +1,12 @@
-import React from "react";
-import * as S from "./styled"
+import React from 'react';
+
+import * as S from './styled';
 
 export interface ButtonProps {
-    text: string
+  onClick?: () => void;
+  text: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text }) => {
-    return (
-        <S.Button>{text}</S.Button>
-    )
-}
+export const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
+  return <S.Button onClick={onClick}>{text}</S.Button>;
+};

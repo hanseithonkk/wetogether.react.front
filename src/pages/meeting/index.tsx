@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { UserImage } from '@/assets';
 import { Button, MeetingIcon } from '@/components';
-import { useGetGroup } from '@/api/query/useGroup';
+import { useGetGroup, useJoinGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
 
@@ -12,7 +12,31 @@ export const MeetingPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const { data } = useGetGroup();
   console.log(data);
-  const [like, setLike] = useState(false);
+  const [love, setLike] = useState(false);
+  const [text, setText] = useState('');
+
+  const userNickname = localStorage.getItem('nickname');
+
+  const { mutate } = useJoinGroup({
+    nickname: userNickname || '',
+    groupId: meetingId ? parseInt(meetingId) : 1,
+    comment: text,
+  });
+
+  const onValid = () => {
+    mutate({});
+  };
+
+  const onChange = (e: any) => {
+    setText(e.target.value);
+  };
+
+  const navigation = useNavigate();
+  useEffect(() => {
+    if (!userNickname || !meetingId) {
+      navigation('/');
+    }
+  }, []);
 
   return (
     <S.MeetingPageContainer>
@@ -49,7 +73,7 @@ export const MeetingPage: React.FC = () => {
                         </S.UserDescription>
                       </div>
                     </S.UserInfoContainer>
-                    {like ? (
+                    {love ? (
                       <FaHeart onClick={() => setLike(!like)} size={30} color={'#EA3939'} />
                     ) : (
                       <FaRegHeart onClick={() => setLike(!like)} size={30} color={'#5B5B5B'} />
@@ -71,27 +95,39 @@ export const MeetingPage: React.FC = () => {
                   <S.MeetingTitle>참여자 목록</S.MeetingTitle>
                   <S.MeetingPeopleList>
                     {users && users.length > 0 && (
-                      <S.MeetingPagePeopleItems>
-                        <S.MeetingPagePeopleContainer>
-                          <S.MeetingPagePeopleImage src={UserImage} />
-                          <div>
-                            <S.MeetingPagePeopleName>서주</S.MeetingPagePeopleName>
-                            <S.MeetingPagePeopleDescription>
-                              이 대회 1등 하려 왔습니다.
-                            </S.MeetingPagePeopleDescription>
-                          </div>
-                        </S.MeetingPagePeopleContainer>
-                      </S.MeetingPagePeopleItems>
+                      <>
+                        {users.map(({ user, comment }) => (
+                          <S.MeetingPagePeopleItems>
+                            <S.MeetingPagePeopleContainer>
+                              <S.MeetingPagePeopleImage src={UserImage} />
+                              <div>
+                                <S.MeetingPagePeopleName>{user.nickname}</S.MeetingPagePeopleName>
+                                <S.MeetingPagePeopleDescription>
+                                  {comment}
+                                </S.MeetingPagePeopleDescription>
+                              </div>
+                            </S.MeetingPagePeopleContainer>
+                          </S.MeetingPagePeopleItems>
+                        ))}
+                      </>
                     )}
                   </S.MeetingPeopleList>
+                  <S.MeetingPageInput
+                    placeholder="간단한 내 소개를 작성해주세요."
+                    value={text}
+                    onChange={onChange}
+                  />
+                  <div>
+                    {users && users.some(({ user }) => user.nickname === userNickname) ? (
+                      <Button text="참여 취소" />
+                    ) : (
+                      <Button text="참여하기" onClick={onValid} />
+                    )}
+                  </div>
                 </>
               );
             },
           )}
-      <S.MeetingPageInput placeholder="간단한 내 소개를 작성해주세요." />
-      <div>
-        <Button text="참여하기" />
-      </div>
     </S.MeetingPageContainer>
   );
 };

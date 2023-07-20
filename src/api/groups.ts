@@ -10,6 +10,7 @@ export interface GroupUserRespose {
   userId: number;
   meetingId: number;
   comment: string;
+  user: UserInfoResponse;
 }
 
 export interface GroupsResponse {
@@ -27,7 +28,22 @@ export interface GroupsResponse {
   like: [];
 }
 
+export interface JoinGroupValues {
+  groupId: number;
+  nickname: string;
+  comment: string;
+}
+
 export const getGroups = async (): Promise<GroupsResponse[]> => {
   const { data } = await instance.get(API_SUFFIX.GROUPS);
+  return data;
+};
+
+export const joinGroups = async ({ groupId, nickname, comment }: JoinGroupValues) => {
+  console.log('asdf');
+  const { data } = await instance.post(
+    `${API_SUFFIX.GROUPS}/${groupId}/involves?nickname=${nickname}`,
+    { comment: comment },
+  );
   return data;
 };
