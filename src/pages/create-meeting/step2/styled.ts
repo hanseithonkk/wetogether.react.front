@@ -5,9 +5,9 @@ export const CreateMeetingStep1PageContainer = styled.form`
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
     padding: 2rem;
+    row-gap: 1.4rem;
 `;
 
 export const CreateMeetingStep1PageTopSection = styled.div`

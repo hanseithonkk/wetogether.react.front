@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./styled"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { Button } from "@/components";
+import { Button, CreateMeetingTitle } from "@/components";
 import { BsChevronLeft } from "react-icons/bs"
 
 export interface CreateMeetingStep1Values {
@@ -19,25 +19,22 @@ export const CreateMeetingStep1: React.FC = () => {
     const navigate = useNavigate();
 
     const onValid = () => {
-        navigate('/main')
+        navigate('/create-meeting/step2')
     }
 
 
     return (
-        <S.AuthPageContainer onSubmit={handleSubmit(onValid)}>
-            <S.AuthPageTopSection>
-                <BsChevronLeft size={28} onClick={() => navigate(-1)} />
-                <S.AuthPageTitle>
-                    모임의 이름을 지어주세요
-                </S.AuthPageTitle>
+        <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>
+            <S.CreateMeetingStep1PageTopSection>
+                <CreateMeetingTitle text="모임의 이름을 주어주세요." />
                 <div>
-                    <S.AuthPageInput placeholder='이름을 입력해주세요' {...register('name', { required: '이름은 필수 입니다.' })} />
+                    <S.CreateMeetingStep1PageInput placeholder='이름을 입력해주세요' {...register('name', { required: '이름은 필수 입니다.' })} />
                     <p style={{ color: '#CD5050' }}>{errors.name?.message}</p>
                 </div>
-            </S.AuthPageTopSection >
+            </S.CreateMeetingStep1PageTopSection >
             <div style={{ width: "100%" }}>
                 <Button text='계속' />
             </div>
-        </S.AuthPageContainer >
+        </S.CreateMeetingStep1PageContainer >
     )
 }
