@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const AuthPageContainer = styled.div`
+export const AuthPageContainer = styled.form`
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 3rem 0;
+    padding: 3rem 2rem;
 `;
 
 export const AuthPageTopSection = styled.div`
@@ -37,11 +37,6 @@ export const AuthPageInput = styled.input`
         color: #5C5C5C;
     }
     margin-bottom: .5rem;
-`;
-
-export const AuthPageButtonWrapper = styled.form`
-    width: 100%;
-
 `;
 
 export const AuthPageButton = styled.button`

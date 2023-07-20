@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from "./styled"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { Button } from '@/components';
 
 export interface FormValues {
   name: string;
@@ -20,7 +21,7 @@ export const AuthPage: React.FC = () => {
   }
   return (
     <>
-      <S.AuthPageContainer>
+      <S.AuthPageContainer onSubmit={handleSubmit(onValid)}>
         <S.AuthPageTopSection>
           <S.AuthPageTitle>만나서 반가워요 :)<br />
             먼저 이름을 알려주세요
@@ -30,9 +31,9 @@ export const AuthPage: React.FC = () => {
             <p style={{ color: '#CD5050' }}>{errors.name?.message}</p>
           </div>
         </S.AuthPageTopSection >
-        <S.AuthPageButtonWrapper onSubmit={handleSubmit(onValid)} >
-          <S.AuthPageButton>계속</S.AuthPageButton>
-        </S.AuthPageButtonWrapper>
+        <div style={{ width: "100%" }}>
+          <Button text='계속' />
+        </div>
       </S.AuthPageContainer >
     </>
   );
