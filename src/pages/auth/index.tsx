@@ -3,17 +3,14 @@ import * as S from "./styled"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { Button } from '@/components';
-
-export interface FormValues {
-  name: string;
-}
+import { RegisterFormValues } from '@/api';
 
 export const AuthPage: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<RegisterFormValues>();
   const navigate = useNavigate();
 
   const onValid = () => {
@@ -27,8 +24,8 @@ export const AuthPage: React.FC = () => {
             먼저 이름을 알려주세요
           </S.AuthPageTitle>
           <div>
-            <S.AuthPageInput placeholder='이름을 입력해주세요' {...register('name', { required: '이름은 필수 입니다.' })} />
-            <p style={{ color: '#CD5050' }}>{errors.name?.message}</p>
+            <S.AuthPageInput placeholder='이름을 입력해주세요' {...register('nickname', { required: '이름은 필수 입니다.' })} />
+            <p style={{ color: '#CD5050' }}>{errors.nickname?.message}</p>
           </div>
         </S.AuthPageTopSection >
         <div style={{ width: "100%" }}>
