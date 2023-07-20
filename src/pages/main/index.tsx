@@ -3,6 +3,7 @@ import * as S from "./styled"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import { useNavigate, useParams } from 'react-router';
+import { MeetingBox } from '@/components';
 
 export interface TabListProps {
   name: string;
@@ -49,11 +50,14 @@ export const MainPage: React.FC = () => {
         </Marker>
       </MapContainer>
       <S.MainPageBottomSection>
-        <div style={{ display: 'flex' }}>
+        <S.MainPageButtonWrapper>
           {TAB_LIST.map(({ name, href }) => (
             <S.MainPageButton isSelected={isActive(tabName, href)} onClick={() => navigate(`/main/${href}`)}>{name}</S.MainPageButton>
           ))}
-        </div>
+        </S.MainPageButtonWrapper>
+        <S.MainPageMeetBoxContainer>
+          <MeetingBox title='한세톤 같이 하실 분' place='한세사이버보안고등학교' joinPeople='2/50명 참여' joinPeopleSecond='49/50명 참여'/>
+        </S.MainPageMeetBoxContainer>
       </S.MainPageBottomSection>
     </S.MainPageContainer>
   );

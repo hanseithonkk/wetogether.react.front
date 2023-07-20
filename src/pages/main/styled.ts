@@ -17,13 +17,25 @@ export const MainPageTitle = styled.h1`
 export const MainPageBottomSection = styled.div`
     position: absolute;
     bottom: 0;
-    height: 20rem;
+    height: 22rem;
     width: 100%;
     background-color: white;   
     border-radius: 1rem 1rem 0 0 ;
     z-index: 99;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 0 0.6rem;
+    overflow: scroll;
+`;
+
+export const MainPageButtonWrapper = styled.div`
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 99;
     padding-top: 2rem;
-    padding: 1.8rem 0.8rem;
+    background-color: white;
 `;
 
 export const MainPageButton = styled.div<{ isSelected?: boolean }>`
@@ -39,4 +51,11 @@ export const MainPageButton = styled.div<{ isSelected?: boolean }>`
     box-shadow: ${({ isSelected }) => isSelected ? '0px 3px 1px 0px rgba(0, 0, 0, 0.04), 0px 3px 8px 0px rgba(0, 0, 0, 0.12)' : '0'};
     border-radius: 7px;
     transition: all .2s ease-in-out;
+`;
+
+export const MainPageMeetBoxContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 `;

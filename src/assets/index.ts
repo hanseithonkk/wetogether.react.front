@@ -1,0 +1,1 @@
+export { default as LocationSVG } from "./location.svg"
