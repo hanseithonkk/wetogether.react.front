@@ -14,7 +14,7 @@ export const AuthPageTopSection = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1.2rem;
 `;
 
 export const AuthPageTitle = styled.h1`

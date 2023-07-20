@@ -56,6 +56,8 @@ export const MainPageMeetBoxContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     row-gap: 2rem;
     margin-bottom: 2rem;
     margin-top: 1rem;

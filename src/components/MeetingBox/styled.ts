@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const MeetingBoxContainer = styled.div`
     width: 100%;
-    height: 10rem;
     box-shadow: 0px 1px 20px -5px rgba(0, 0, 0, 0.25);
     border-radius: 1.2rem;
     padding: 1.6rem;
