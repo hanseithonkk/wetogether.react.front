@@ -31,7 +31,7 @@ export interface GroupsResponse {
 export interface JoinGroupValues {
   groupId: number;
   nickname: string;
-  comment: string;
+  comment?: string;
 }
 
 export const getGroups = async (): Promise<GroupsResponse[]> => {
@@ -40,10 +40,16 @@ export const getGroups = async (): Promise<GroupsResponse[]> => {
 };
 
 export const joinGroups = async ({ groupId, nickname, comment }: JoinGroupValues) => {
-  console.log('asdf');
   const { data } = await instance.post(
     `${API_SUFFIX.GROUPS}/${groupId}/involves?nickname=${nickname}`,
     { comment: comment },
+  );
+  return data;
+};
+
+export const leaveGroups = async ({ groupId, nickname }: JoinGroupValues) => {
+  const { data } = await instance.delete(
+    `${API_SUFFIX.GROUPS}/${groupId}/involves?nickname=${nickname}`,
   );
   return data;
 };

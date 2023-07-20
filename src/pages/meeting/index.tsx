@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { UserImage } from '@/assets';
 import { Button, MeetingIcon } from '@/components';
-import { useGetGroup, useJoinGroup } from '@/api/query/useGroup';
+import { useGetGroup, useJoinGroup, useLeaveGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
 
@@ -17,14 +17,23 @@ export const MeetingPage: React.FC = () => {
 
   const userNickname = localStorage.getItem('nickname');
 
-  const { mutate } = useJoinGroup({
+  const { mutate: joinGroup } = useJoinGroup({
     nickname: userNickname || '',
     groupId: meetingId ? parseInt(meetingId) : 1,
     comment: text,
   });
 
-  const onValid = () => {
-    mutate({});
+  const { mutate: leaveGroup } = useLeaveGroup({
+    nickname: userNickname || '',
+    groupId: meetingId ? parseInt(meetingId) : 1,
+  });
+
+  const onJoinGroupValid = () => {
+    joinGroup({});
+  };
+
+  const onLeaveGroupValid = () => {
+    leaveGroup({});
   };
 
   const onChange = (e: any) => {
@@ -112,16 +121,18 @@ export const MeetingPage: React.FC = () => {
                       </>
                     )}
                   </S.MeetingPeopleList>
-                  <S.MeetingPageInput
-                    placeholder="간단한 내 소개를 작성해주세요."
-                    value={text}
-                    onChange={onChange}
-                  />
                   <div>
                     {users && users.some(({ user }) => user.nickname === userNickname) ? (
-                      <Button text="참여 취소" />
+                      <Button text="참여 취소" onClick={onLeaveGroupValid} />
                     ) : (
-                      <Button text="참여하기" onClick={onValid} />
+                      <>
+                        <S.MeetingPageInput
+                          placeholder="간단한 내 소개를 작성해주세요."
+                          value={text}
+                          onChange={onChange}
+                        />
+                        <Button text="참여하기" onClick={onJoinGroupValid} />
+                      </>
                     )}
                   </div>
                 </>
