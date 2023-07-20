@@ -5,10 +5,10 @@ export interface MeetingProps {
     title: string;
     place: string;
     joinPeople: string;
-    joinPeopleSecond: string;
+    time: string;
 }
 
-export const MeetingBox: React.FC<MeetingProps> = ({ title, place, joinPeople, joinPeopleSecond }) => {
+export const MeetingBox: React.FC<MeetingProps> = ({ title, place, joinPeople, time }) => {
     return (
         <S.MeetingBoxContainer>
             <S.MeetingBoxTitle>{title}</S.MeetingBoxTitle>
@@ -28,7 +28,7 @@ export const MeetingBox: React.FC<MeetingProps> = ({ title, place, joinPeople, j
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="21" viewBox="0 0 15 16" fill="none">
                     <path d="M12.5 2.375H11.875V1.125H10.625V2.375H4.375V1.125H3.125V2.375H2.5C1.8125 2.375 1.25 2.9375 1.25 3.625V13.625C1.25 14.3125 1.8125 14.875 2.5 14.875H12.5C13.1875 14.875 13.75 14.3125 13.75 13.625V3.625C13.75 2.9375 13.1875 2.375 12.5 2.375ZM12.5 13.625H2.5V5.5H12.5V13.625Z" fill="#7D7D7D" />
                 </svg>
-                <S.MeetingBoxText>{joinPeopleSecond}</S.MeetingBoxText>
+                <S.MeetingBoxText>{time}</S.MeetingBoxText>
             </S.MeetingBoxIconContainer>
         </S.MeetingBoxContainer>
     )

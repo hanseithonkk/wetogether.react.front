@@ -24,8 +24,7 @@ export const MainPageBottomSection = styled.div`
     z-index: 99;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
-    padding: 0 0.6rem;
+    /* row-gap: 2rem; */
     overflow: scroll;
 `;
 
@@ -34,7 +33,7 @@ export const MainPageButtonWrapper = styled.div`
     position: sticky;
     top: 0;
     z-index: 99;
-    padding-top: 2rem;
+    padding: 2rem 0.6rem 1rem 0.6rem;
     background-color: white;
 `;
 
@@ -58,4 +57,7 @@ export const MainPageMeetBoxContainer = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 0.6rem;
 `;

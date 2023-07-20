@@ -28,8 +28,6 @@ export const MainPage: React.FC = () => {
 
   const isActive = (activeTab?: string, tabName?: string) => activeTab === tabName;
 
-
-
   return (
     <S.MainPageContainer>
       <S.MainPageTitle>모임 찾기</S.MainPageTitle>
@@ -56,7 +54,8 @@ export const MainPage: React.FC = () => {
           ))}
         </S.MainPageButtonWrapper>
         <S.MainPageMeetBoxContainer>
-          <MeetingBox title='한세톤 같이 하실 분' place='한세사이버보안고등학교' joinPeople='2/50명 참여' joinPeopleSecond='49/50명 참여'/>
+          <MeetingBox title='한세톤 같이 하실 분' place='한세사이버보안고등학교 (0.1km)' joinPeople='2/50명 참여' time='2023년 7월 20일, 15시 00분' />
+          <MeetingBox title='아침 조깅 같이 하실 분' place='여의도한강공원 (5.7km)' joinPeople='49/50명 참여' time='매일 7시 00분' />
         </S.MainPageMeetBoxContainer>
       </S.MainPageBottomSection>
     </S.MainPageContainer>
