@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { BsChevronLeft } from "react-icons/bs";
 
 export interface CreateMeetingTitleProps {
-    text: string;
+    text: React.ReactNode;
 }
 
 export const CreateMeetingTitle: React.FC<CreateMeetingTitleProps> = ({ text }) => {

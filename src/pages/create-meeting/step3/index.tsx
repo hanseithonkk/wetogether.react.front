@@ -2,7 +2,6 @@ import { Button, CreateMeetingTitle } from "@/components"
 import * as S from "./styled"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 export interface CreateMeetingStep3Values {
     date: string;
@@ -18,7 +17,7 @@ export const CreateMeetingStep3: React.FC = () => {
     const navigate = useNavigate();
 
     const onValid = () => {
-        navigate('/create-meeting/step3')
+        navigate('/create-meeting/step4')
     }
 
     const today = new Date();
