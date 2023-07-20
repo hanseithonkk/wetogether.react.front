@@ -6,7 +6,9 @@ export const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<AuthPage />} />
-      <Route path="/main" element={<MainPage />} />
+      <Route path="/main" element={<MainPage />} >
+        <Route path=':tabName' element={<MainPage />} />
+      </Route>
     </Routes>
   );
 };
