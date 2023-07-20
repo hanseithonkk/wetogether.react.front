@@ -1,17 +1,19 @@
-import { UseMutationResult, UseQueryResult, useMutation, useQuery } from 'react-query';
-import { RegisterFormValues, auth } from '../auth';
+import { UseMutationResult, useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 
-export const useAuth = ({ nickname }: RegisterFormValues): UseMutationResult => {
-    const navigate = useNavigate();
-    return useMutation('useAuth', () => auth({ nickname }), {
-        onSuccess: () => {
-            navigate('/')
-        },
-        onError: (err) => {
-            console.log(err)
-        },
-        retry: 0
-    })
+import { RegisterFormValues, auth } from '../auth';
 
-}
+export const useAuth = ({ nickname }: RegisterFormValues): UseMutationResult => {
+  const navigate = useNavigate();
+  return useMutation('useAuth', () => auth({ nickname }), {
+    onSuccess: () => {
+      console.log(nickname);
+      localStorage.setItem('nickname', nickname);
+      navigate('/main');
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+    retry: 0,
+  });
+};

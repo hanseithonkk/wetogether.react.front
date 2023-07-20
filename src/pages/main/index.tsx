@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import * as S from "./styled"
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 import { useNavigate, useParams } from 'react-router';
+import { FaPlus } from 'react-icons/fa';
+
 import { MeetingBox } from '@/components';
-import { FaPlus } from "react-icons/fa"
+
+import * as S from './styled';
 
 export interface TabListProps {
   name: string;
@@ -14,13 +16,13 @@ export interface TabListProps {
 export const TAB_LIST: TabListProps[] = [
   {
     name: '내 근처',
-    href: 'close'
+    href: 'close',
   },
   {
     name: '내 친구',
-    href: 'friend'
-  }
-]
+    href: 'friend',
+  },
+];
 
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export const MainPage: React.FC = () => {
         center={[37.55179, 126.95171]}
         zoom={20}
         scrollWheelZoom={true}
-        style={{ width: "100%", height: "60%", zIndex: '10' }}
+        style={{ width: '100%', height: '60%', zIndex: '10' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -44,23 +46,42 @@ export const MainPage: React.FC = () => {
         />
         <Marker position={[37.55179, 126.95171]}>
           <Popup>
-            <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
+            <span>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </span>
           </Popup>
         </Marker>
       </MapContainer>
       <S.MainPageBottomContainer>
         <S.MainPageAddButtonWrapper onClick={() => navigate('/create-meeting/step1')}>
-          <FaPlus size={30} color='white' />
+          <FaPlus size={30} color="white" />
         </S.MainPageAddButtonWrapper>
         <S.MainPageBottomSection>
           <S.MainPageButtonWrapper>
             {TAB_LIST.map(({ name, href }) => (
-              <S.MainPageButton isSelected={isActive(tabName, href)} onClick={() => navigate(`/main/${href}`)}>{name}</S.MainPageButton>
+              <S.MainPageButton
+                isSelected={isActive(tabName, href)}
+                onClick={() => navigate(`/main/${href}`)}
+              >
+                {name}
+              </S.MainPageButton>
             ))}
           </S.MainPageButtonWrapper>
           <S.MainPageMeetBoxContainer>
-            <MeetingBox title='한세톤 같이 하실 분' place='한세사이버보안고등학교 (0.1km)' joinPeople='2/50명 참여' time='2023년 7월 20일, 15시 00분' id={1} />
-            <MeetingBox title='아침 조깅 같이 하실 분' place='여의도한강공원 (5.7km)' joinPeople='49/50명 참여' time='매일 7시 00분' id={2} />
+            <MeetingBox
+              title="한세톤 같이 하실 분"
+              place="한세사이버보안고등학교 (0.1km)"
+              joinPeople="2/50명 참여"
+              time="2023년 7월 20일, 15시 00분"
+              id={1}
+            />
+            <MeetingBox
+              title="아침 조깅 같이 하실 분"
+              place="여의도한강공원 (5.7km)"
+              joinPeople="49/50명 참여"
+              time="매일 7시 00분"
+              id={2}
+            />
           </S.MainPageMeetBoxContainer>
         </S.MainPageBottomSection>
       </S.MainPageBottomContainer>
