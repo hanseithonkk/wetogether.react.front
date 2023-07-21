@@ -45,7 +45,7 @@ export const MainPageAddButtonWrapper = styled.div`
 export const MainPageBottomSection = styled.div`
   position: absolute;
   bottom: 0;
-  height: 20rem;
+  height: 30rem;
   width: 100%;
   background-color: white;
   border-radius: 1rem 1rem 0 0;

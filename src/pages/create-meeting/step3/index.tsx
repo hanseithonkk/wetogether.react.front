@@ -48,28 +48,34 @@ export const CreateMeetingStep3: React.FC = () => {
 
   return (
     <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>
-      <S.CreateMeetingStep1PageTopSection>
-        <CreateMeetingTitle text="언제 모일까요?" />
-      </S.CreateMeetingStep1PageTopSection>
-      <div style={{ width: '100%' }}>
-        <h1>날짜를 설정해주세요</h1>
-        <S.CreateMeetingStep1PageInput
-          type="date"
-          id="start"
-          placeholder={`${year}-${month > 10 ? month : `0${month}`}-${day > 10 ? day : `0${day}`}`}
-          {...register('dateFirst', { required: '날짜를 입력해주세요' })}
-        />
-        <p style={{ color: '#CD5050' }}>{errors.dateFirst?.message}</p>
-      </div>
-      <div style={{ width: '100%' }}>
-        <h1>시간을 설정해주세요</h1>
-        <S.CreateMeetingStep1PageInput
-          type="time"
-          id="start"
-          placeholder={`${hour > 10 ? hour : `0${hour}`}:${minutes > 10 ? minutes : `0${minutes}`}`}
-          {...register('dateSecond', { required: '시간을 입력해주세요' })}
-        />
-        <p style={{ color: '#CD5050' }}>{errors.dateSecond?.message}</p>
+      <div>
+        <S.CreateMeetingStep1PageTopSection>
+          <CreateMeetingTitle text="언제 모일까요?" />
+        </S.CreateMeetingStep1PageTopSection>
+        <div style={{ width: '100%', marginTop: '2rem' }}>
+          <h1>날짜를 설정해주세요</h1>
+          <S.CreateMeetingStep1PageInput
+            type="date"
+            id="start"
+            placeholder={`${year}-${month > 10 ? month : `0${month}`}-${
+              day > 10 ? day : `0${day}`
+            }`}
+            {...register('dateFirst', { required: '날짜를 입력해주세요' })}
+          />
+          <p style={{ color: '#CD5050' }}>{errors.dateFirst?.message}</p>
+        </div>
+        <div style={{ width: '100%' }}>
+          <h1>시간을 설정해주세요</h1>
+          <S.CreateMeetingStep1PageInput
+            type="time"
+            id="start"
+            placeholder={`${hour > 10 ? hour : `0${hour}`}:${
+              minutes > 10 ? minutes : `0${minutes}`
+            }`}
+            {...register('dateSecond', { required: '시간을 입력해주세요' })}
+          />
+          <p style={{ color: '#CD5050' }}>{errors.dateSecond?.message}</p>
+        </div>
       </div>
       <div style={{ width: '100%' }}>
         <Button text="계속" />

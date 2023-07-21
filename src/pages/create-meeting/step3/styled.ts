@@ -6,8 +6,8 @@ export const CreateMeetingStep1PageContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
   padding: 2rem;
-  row-gap: 1.4rem;
 `;
 
 export const CreateMeetingStep1PageTopSection = styled.div`
