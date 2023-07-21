@@ -27,7 +27,7 @@ export const MeetingBox: React.FC<MeetingProps> = ({
     <S.MeetingBoxContainer onClick={() => navigate(`${href}`)}>
       <S.MeetingBoxTitle>{title}</S.MeetingBoxTitle>
       <MeetingIcon place={place} joinPeople={joinPeople} time={time} />
-      {hasButton && <S.MeetingButton>참가하기</S.MeetingButton>}
+      {hasButton && <S.MeetingButton onClick={() => navigate(`${href}`)}>참가하기</S.MeetingButton>}
     </S.MeetingBoxContainer>
   );
 };

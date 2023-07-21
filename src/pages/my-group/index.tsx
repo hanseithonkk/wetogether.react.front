@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { MeetingBox } from '@/components';
-import { UseGetUserGroup, useGetGroup } from '@/api/query/useGroup';
+import { UseGetUserGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
 

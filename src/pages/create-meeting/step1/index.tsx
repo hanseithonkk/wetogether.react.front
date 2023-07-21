@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { BsChevronLeft } from 'react-icons/bs';
 
 import { useSetRecoilState } from 'recoil';
 
