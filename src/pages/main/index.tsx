@@ -81,7 +81,7 @@ export const MainPage: React.FC = () => {
                     place={locationString}
                     joinPeople={users.length + '/' + maxUser + '명 참여'}
                     time={`${year}년 ${month}월 ${day}일, ${hour}시 ${minutes}분`}
-                    id={id}
+                    href={`/meeting/${id}`}
                   />
                 );
               })}

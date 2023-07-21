@@ -7,6 +7,7 @@ import {
   CreateMeetingStep2,
   CreateMeetingStep3,
   CreateMeetingStep4,
+  MY_GROUP_LIST,
   MainPage,
   MeetingPage,
   MyGroupPage,
@@ -29,7 +30,11 @@ export const App: React.FC = () => {
         <Route path="step3" element={<CreateMeetingStep3 />} />
         <Route path="step4" element={<CreateMeetingStep4 />} />
       </Route>
-      <Route path="/my-group" element={<MyGroupPage />} />
+      <Route path="/my-group" element={<MyGroupPage />}>
+        <Route index element={<Navigate to={`/my-group/${MY_GROUP_LIST[0].href}`} />} />
+        <Route path=":option" element={<MyGroupPage />} />
+      </Route>
+      <Route path="group-location/:groupId" element={<MyGroupPage />} />
     </Routes>
   );
 };

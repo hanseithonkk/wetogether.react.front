@@ -19,6 +19,7 @@ export const AuthPage: React.FC = () => {
   const { mutate } = useAuth({ nickname: username });
 
   const onValid = ({ nickname }: RegisterFormValues) => {
+    console.log(nickname);
     mutate({ nickname });
   };
 
