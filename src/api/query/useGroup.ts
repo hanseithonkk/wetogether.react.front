@@ -93,7 +93,6 @@ export const UseGetGroupLocation = ({
 }: GroupLocationValues): UseQueryResult<GroupLocationResults> =>
   useQuery('UseGetGroupLocation', () => getGroupLocation({ groupId, nickname }), {
     retry: 0,
-    staleTime: 3600,
   });
 
 export const UsePatchGroupLocation = ({

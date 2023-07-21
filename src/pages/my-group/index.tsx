@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BsChevronLeft } from 'react-icons/bs';
 
 import { MeetingBox } from '@/components';
 import { UseGetUserGroup } from '@/api/query/useGroup';
@@ -29,6 +30,7 @@ export const MyGroupPage: React.FC = () => {
   return (
     <S.MyGroupPageContainer>
       <S.MyGroupPageTopSection>
+        <BsChevronLeft size={28} onClick={() => navigate(-1)} />
         <S.MyGroupPageTitle>내 모임</S.MyGroupPageTitle>
         <S.MyGroupPageButtonWrapper>
           {MY_GROUP_LIST.map(({ name, href }) => (

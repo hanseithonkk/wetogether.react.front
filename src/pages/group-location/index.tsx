@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import L from 'leaflet';
 
 import { CreateMeetingTitle } from '@/components';
-import { UseGetGroupLocation, UsePatchGroupLocation } from '@/api/query/useGroup';
+import { UseGetGroupLocation } from '@/api/query/useGroup';
 import { DestLocationIcon, LocationIcon } from '@/assets';
 
 import * as S from './styled';
@@ -63,7 +63,7 @@ export const GroupLocationPage: React.FC = () => {
             {data.ul.map(({ location, user }) => {
               const position = location.split(',');
               return (
-                <Marker position={[+position[1], +position[0]]} icon={greenIcon}>
+                <Marker position={[+position[0], +position[1]]} icon={greenIcon}>
                   <Popup>{user.nickname}</Popup>
                 </Marker>
               );
