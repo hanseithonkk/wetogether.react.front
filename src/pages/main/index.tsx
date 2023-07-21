@@ -7,6 +7,8 @@ import { Footer, MeetingBox } from '@/components';
 import { useGetGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
+import L from 'leaflet';
+import { LocationIcon } from '@/assets';
 
 export interface TabListProps {
   name: string;
@@ -32,6 +34,11 @@ export const MainPage: React.FC = () => {
 
   const isActive = (activeTab?: string, tabName?: string) => activeTab === tabName;
 
+  var greenIcon = L.icon({
+      iconUrl: LocationIcon,
+      iconSize:     [47, 61],
+  });
+
   return (
     <>
       <S.MainPageContainer>
@@ -49,7 +56,7 @@ export const MainPage: React.FC = () => {
           {data?.map((value) => {
             const position = value.location.split(',');
             return (
-              <Marker position={[+position[1], +position[0]]}>
+              <Marker position={[+position[1], +position[0]]} icon={greenIcon}>
                 <Popup>{value.title}</Popup>
               </Marker>
             );
