@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import LocationPicker from 'react-leaflet-location-picker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useSetRecoilState } from 'recoil';
@@ -42,6 +42,14 @@ export const CreateMeetingStep2: React.FC = () => {
       navigate(`/create-meeting/step3`);
     }
   };
+
+  const nickname = localStorage.getItem('nickname');
+
+  useEffect(() => {
+    if (!nickname) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <S.CreateMeetingStep2PageContainer onSubmit={handleSubmit(onValid)}>

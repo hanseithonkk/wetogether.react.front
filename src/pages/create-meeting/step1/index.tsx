@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { BsChevronLeft } from 'react-icons/bs';
@@ -28,6 +28,14 @@ export const CreateMeetingStep1: React.FC = () => {
     createMeeting((prev) => ({ ...prev, title: name }));
     navigate(`/create-meeting/step2`);
   };
+
+  const nickname = localStorage.getItem('nickname');
+
+  useEffect(() => {
+    if (!nickname) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>

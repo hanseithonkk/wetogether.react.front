@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
@@ -36,6 +37,14 @@ export const CreateMeetingStep3: React.FC = () => {
   const day = today.getDay();
   const hour = today.getHours();
   const minutes = today.getMinutes();
+
+  const nickname = localStorage.getItem('nickname');
+
+  useEffect(() => {
+    if (!nickname) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>

@@ -2,10 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 
-import { useSetRecoilState } from 'recoil';
-
 import { Button, CreateMeetingTitle } from '@/components';
-import { CreateMeetingState } from '@/atom';
 import { useCreateGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';

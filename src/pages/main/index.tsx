@@ -46,13 +46,14 @@ export const MainPage: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[37.55179, 126.95171]}>
-          <Popup>
-            <span>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </span>
-          </Popup>
-        </Marker>
+        {data?.map((value) => {
+          const position = value.location.split(',');
+          return (
+            <Marker position={[+position[1], +position[0]]}>
+              <Popup>{value.title}</Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
       <S.MainPageBottomContainer>
         <S.MainPageAddButtonWrapper onClick={() => navigate('/create-meeting/step1')}>

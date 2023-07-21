@@ -101,10 +101,10 @@ export const MeetingPage: React.FC = () => {
                     </S.MeetingWarningBoxTitle>
                     <S.MeetingWarningDescription>{important}</S.MeetingWarningDescription>
                   </S.MeetingPageWaringBox>
-                  <S.MeetingTitle>참여자 목록</S.MeetingTitle>
-                  <S.MeetingPeopleList>
-                    {users && users.length > 0 && (
-                      <>
+                  {users && users.length > 0 && (
+                    <>
+                      <S.MeetingTitle>참여자 목록</S.MeetingTitle>
+                      <S.MeetingPeopleList>
                         {users.map(({ user, comment }) => (
                           <S.MeetingPagePeopleItems>
                             <S.MeetingPagePeopleContainer>
@@ -118,9 +118,9 @@ export const MeetingPage: React.FC = () => {
                             </S.MeetingPagePeopleContainer>
                           </S.MeetingPagePeopleItems>
                         ))}
-                      </>
-                    )}
-                  </S.MeetingPeopleList>
+                      </S.MeetingPeopleList>
+                    </>
+                  )}
                   <div>
                     {users && users.some(({ user }) => user.nickname === userNickname) ? (
                       <Button text="참여 취소" onClick={onLeaveGroupValid} />
