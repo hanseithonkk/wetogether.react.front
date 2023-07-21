@@ -9,6 +9,7 @@ import {
   CreateMeetingStep4,
   MainPage,
   MeetingPage,
+  MyGroupPage,
   TAB_LIST,
 } from './pages';
 
@@ -28,6 +29,7 @@ export const App: React.FC = () => {
         <Route path="step3" element={<CreateMeetingStep3 />} />
         <Route path="step4" element={<CreateMeetingStep4 />} />
       </Route>
+      <Route path="/my-group" element={<MyGroupPage />} />
     </Routes>
   );
 };

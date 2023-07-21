@@ -87,7 +87,7 @@ export const MainPageMeetBoxContainer = styled.div`
   align-items: center;
   justify-content: center;
   row-gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 8rem;
   margin-top: 1rem;
   padding: 0 0.6rem;
 `;
