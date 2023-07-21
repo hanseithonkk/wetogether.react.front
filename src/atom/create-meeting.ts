@@ -5,7 +5,6 @@ export const CreateMeetingState = atom({
   default: {
     title: '',
     location: '',
-    maxUser: null,
     meetingDate: '',
   },
 });

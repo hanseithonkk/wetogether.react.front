@@ -1,12 +1,16 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
+import { useSetRecoilState } from 'recoil';
+
 import { Button, CreateMeetingTitle } from '@/components';
+import { CreateMeetingState } from '@/atom';
 
 import * as S from './styled';
 
 export interface CreateMeetingStep3Values {
-  date: string;
+  dateFirst: string;
+  dateSecond: string;
 }
 
 export const CreateMeetingStep3: React.FC = () => {
@@ -17,8 +21,12 @@ export const CreateMeetingStep3: React.FC = () => {
   } = useForm<CreateMeetingStep3Values>();
 
   const navigate = useNavigate();
+  const createMeeting = useSetRecoilState(CreateMeetingState);
 
-  const onValid = () => {
+  const onValid = ({ dateFirst, dateSecond }: CreateMeetingStep3Values) => {
+    const date = dateFirst + ' ' + dateSecond;
+    const realDate = new Date(date);
+    createMeeting((prev) => ({ ...prev, meetingDate: realDate.toString() }));
     navigate('/create-meeting/step4');
   };
 
@@ -29,26 +37,30 @@ export const CreateMeetingStep3: React.FC = () => {
   const hour = today.getHours();
   const minutes = today.getMinutes();
 
-  console.log(hour, minutes);
-
   return (
     <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>
       <S.CreateMeetingStep1PageTopSection>
         <CreateMeetingTitle text="언제 모일까요?" />
       </S.CreateMeetingStep1PageTopSection>
       <div style={{ width: '100%' }}>
+        <h1>날짜를 설정해주세요</h1>
         <S.CreateMeetingStep1PageInput
-          placeholder="상세 위치를 입력해주세요"
           type="date"
           id="start"
-          value={`${year}-${month > 10 ? month : `0${month}`}-${day > 10 ? day : `0${day}`}`}
+          placeholder={`${year}-${month > 10 ? month : `0${month}`}-${day > 10 ? day : `0${day}`}`}
+          {...register('dateFirst', { required: '날짜를 입력해주세요' })}
         />
+        <p style={{ color: '#CD5050' }}>{errors.dateFirst?.message}</p>
+      </div>
+      <div style={{ width: '100%' }}>
+        <h1>시간을 설정해주세요</h1>
         <S.CreateMeetingStep1PageInput
-          placeholder="상세 위치를 입력해주세요"
           type="time"
           id="start"
-          value={`${hour > 10 ? hour : `0${hour}`}:${minutes > 10 ? minutes : `0${minutes}`}`}
+          placeholder={`${hour > 10 ? hour : `0${hour}`}:${minutes > 10 ? minutes : `0${minutes}`}`}
+          {...register('dateSecond', { required: '시간을 입력해주세요' })}
         />
+        <p style={{ color: '#CD5050' }}>{errors.dateSecond?.message}</p>
       </div>
       <div style={{ width: '100%' }}>
         <Button text="계속" />

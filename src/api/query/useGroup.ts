@@ -1,6 +1,19 @@
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { GroupsResponse, JoinGroupValues, getGroups, joinGroups, leaveGroups } from '../groups';
+import { useRecoilValue } from 'recoil';
+
+import { CreateMeetingState } from '@/atom';
+
+import {
+  CreateCroupValues,
+  GroupsResponse,
+  JoinGroupValues,
+  createGroup,
+  getGroups,
+  joinGroups,
+  leaveGroups,
+} from '../groups';
 
 export const useGetGroup = (): UseQueryResult<GroupsResponse[]> =>
   useQuery('useGetGroup', getGroups, {
@@ -34,4 +47,36 @@ export const useLeaveGroup = ({ groupId, nickname }: JoinGroupValues): UseMutati
     },
     retry: 0,
   });
+};
+
+export const useCreateGroup = ({
+  nickname,
+  content,
+  important,
+  maxUser,
+}: CreateCroupValues): UseMutationResult => {
+  const navigation = useNavigate();
+  const createMeeting = useRecoilValue(CreateMeetingState);
+  return useMutation(
+    'useCreateGroup',
+    () =>
+      createGroup({
+        nickname,
+        title: createMeeting.title,
+        location: createMeeting.location,
+        meetingDate: createMeeting.meetingDate,
+        maxUser,
+        content,
+        important,
+      }),
+    {
+      onSuccess: () => {
+        navigation('/main');
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+      retry: 0,
+    },
+  );
 };

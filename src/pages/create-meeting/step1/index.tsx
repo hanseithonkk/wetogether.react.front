@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { BsChevronLeft } from 'react-icons/bs';
 
+import { useSetRecoilState } from 'recoil';
+
 import { Button, CreateMeetingTitle } from '@/components';
+import { CreateMeetingState } from '@/atom';
 
 import * as S from './styled';
 
@@ -18,10 +21,12 @@ export const CreateMeetingStep1: React.FC = () => {
     formState: { errors },
   } = useForm<CreateMeetingStep1Values>();
 
+  const createMeeting = useSetRecoilState(CreateMeetingState);
   const navigate = useNavigate();
 
   const onValid = ({ name }: CreateMeetingStep1Values) => {
-    navigate(`/create-meeting/step2?${name}`);
+    createMeeting((prev) => ({ ...prev, title: name }));
+    navigate(`/create-meeting/step2`);
   };
 
   return (

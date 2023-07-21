@@ -34,6 +34,16 @@ export interface JoinGroupValues {
   comment?: string;
 }
 
+export interface CreateCroupValues {
+  nickname: string;
+  title?: string;
+  location?: string;
+  maxUser?: number;
+  meetingDate?: string;
+  content?: string;
+  important?: string;
+}
+
 export const getGroups = async (): Promise<GroupsResponse[]> => {
   const { data } = await instance.get(API_SUFFIX.GROUPS);
   return data;
@@ -51,5 +61,25 @@ export const leaveGroups = async ({ groupId, nickname }: JoinGroupValues) => {
   const { data } = await instance.delete(
     `${API_SUFFIX.GROUPS}/${groupId}/involves?nickname=${nickname}`,
   );
+  return data;
+};
+
+export const createGroup = async ({
+  nickname,
+  title,
+  location,
+  maxUser,
+  meetingDate,
+  content,
+  important,
+}: CreateCroupValues) => {
+  const { data } = await instance.post(`${API_SUFFIX.GROUPS}?nickname=${nickname}`, {
+    title,
+    location,
+    maxUser,
+    meetingDate,
+    content,
+    important,
+  });
   return data;
 };

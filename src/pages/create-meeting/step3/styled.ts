@@ -24,6 +24,7 @@ export const CreateMeetingStep1PageTitle = styled.h1`
 `;
 
 export const CreateMeetingStep1PageInput = styled.input`
+  margin-top: 1rem;
   width: 85vw;
   height: 3.4rem;
   background-color: #f8f8f8;
