@@ -17,29 +17,6 @@ export const GroupLocationPage: React.FC = () => {
     groupId: +(groupId ?? 0),
     nickname: nickname || '',
   });
-  const [location, setLocation] = useState<string>();
-
-  const { geolocation } = navigator;
-
-  geolocation.getCurrentPosition(
-    (position) => {
-      const coords = position.coords;
-      const latitude = coords.latitude;
-      const longitude = coords.longitude;
-      const loc = latitude.toString() + ',' + longitude.toString();
-      console.log(loc);
-      setLocation(loc);
-    },
-    () => {
-      console.log('oops');
-    },
-  );
-
-  const { mutate } = UsePatchGroupLocation({
-    groupId: +(groupId ?? 0),
-    nickname: nickname || '',
-    location: location || '',
-  });
 
   const greenIcon = L.icon({
     iconUrl: LocationIcon,
@@ -55,9 +32,6 @@ export const GroupLocationPage: React.FC = () => {
 
   setTimeout(() => {
     refetch();
-    if (location !== '') {
-      mutate({});
-    }
   }, 2000);
 
   return (
