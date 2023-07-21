@@ -18,6 +18,7 @@ import {
   leaveGroups,
   PatchcGroupLocationValues,
   patchGroupLocation,
+  getUserGroup,
 } from '../groups';
 
 export const useGetGroup = (): UseQueryResult<GroupsResponse[]> =>
@@ -108,3 +109,8 @@ export const UsePatchGroupLocation = ({
     },
   );
 };
+
+export const UseGetUserGroup = (username: string): UseQueryResult<GroupsResponse[]> =>
+  useQuery('UseGetUserGroup', () => getUserGroup(username), {
+    retry: 0,
+  });

@@ -132,3 +132,8 @@ export const patchGroupLocation = async ({
   );
   return data;
 };
+
+export const getUserGroup = async (nickname: string) => {
+  const { data } = await instance.get(`${API_SUFFIX.GROUPS}/my?nickname=${nickname}`);
+  return data;
+};

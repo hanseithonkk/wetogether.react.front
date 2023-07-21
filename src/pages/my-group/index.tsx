@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { MeetingBox } from '@/components';
-import { useGetGroup } from '@/api/query/useGroup';
+import { UseGetUserGroup, useGetGroup } from '@/api/query/useGroup';
 
 import * as S from './styled';
 
@@ -18,7 +18,8 @@ export const MY_GROUP_LIST = [
 ];
 
 export const MyGroupPage: React.FC = () => {
-  const { data } = useGetGroup();
+  const nickname = localStorage.getItem('nickname');
+  const { data } = UseGetUserGroup(nickname || '');
   const navigate = useNavigate();
 
   const { option } = useParams<{ option: string }>();

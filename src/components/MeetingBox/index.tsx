@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { MeetingIcon } from '../MeetingIcon';
-import { Button } from '../Button';
 
 import * as S from './styled';
 
