@@ -7,14 +7,17 @@ import { CreateMeetingState } from '@/atom';
 
 import {
   CreateCroupValues,
+  GroupLocationResults,
   GroupLocationValues,
   GroupsResponse,
   JoinGroupValues,
   createGroup,
   getGroups,
-  groupLocation,
+  getGroupLocation,
   joinGroups,
   leaveGroups,
+  PatchcGroupLocationValues,
+  patchGroupLocation,
 } from '../groups';
 
 export const useGetGroup = (): UseQueryResult<GroupsResponse[]> =>
@@ -86,7 +89,22 @@ export const useCreateGroup = ({
 export const UseGetGroupLocation = ({
   groupId,
   nickname,
-}: GroupLocationValues): UseQueryResult<GroupsResponse[]> =>
-  useQuery('UseGetGroupLocation', () => groupLocation({ groupId, nickname }), {
+}: GroupLocationValues): UseQueryResult<GroupLocationResults> =>
+  useQuery('UseGetGroupLocation', () => getGroupLocation({ groupId, nickname }), {
     retry: 0,
+    staleTime: 3600,
   });
+
+export const UsePatchGroupLocation = ({
+  groupId,
+  nickname,
+  location,
+}: PatchcGroupLocationValues): UseMutationResult => {
+  return useMutation(
+    'UsePatchGroupLocation',
+    () => patchGroupLocation({ groupId, nickname, location }),
+    {
+      retry: 0,
+    },
+  );
+};

@@ -55,6 +55,7 @@ export const MyGroupPage: React.FC = () => {
               joinPeople={users.length + '/' + maxUser + '명 참여'}
               time={`${year}년 ${month}월 ${day}일, ${hour}시 ${minutes}분`}
               href={`/group-location/${id}`}
+              hasButton={true}
             />
           );
         })}

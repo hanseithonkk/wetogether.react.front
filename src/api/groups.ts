@@ -45,16 +45,33 @@ export interface CreateCroupValues {
 }
 
 export interface GroupLocationResults {
-  id: number;
-  userId: number;
-  meetingId: number;
-  location: string;
-  user: { id: number; nickname: string };
+  l: {
+    id: number;
+    userId: number;
+    meetingId: number;
+    location: string;
+    title: string;
+  };
+  ul: [
+    {
+      id: number;
+      userId: number;
+      meetingId: number;
+      location: string;
+      user: { id: number; nickname: string };
+    },
+  ];
 }
 
 export interface GroupLocationValues {
   groupId: number;
   nickname: string;
+}
+
+export interface PatchcGroupLocationValues {
+  groupId: number;
+  nickname: string;
+  location: string;
 }
 
 export const getGroups = async (): Promise<GroupsResponse[]> => {
@@ -97,9 +114,21 @@ export const createGroup = async ({
   return data;
 };
 
-export const groupLocation = async ({ groupId, nickname }: GroupLocationValues) => {
+export const getGroupLocation = async ({ groupId, nickname }: GroupLocationValues) => {
   const { data } = await instance.get(
     `${API_SUFFIX.GROUPS}/${groupId}/locations?nickname=${nickname}`,
+  );
+  return data;
+};
+
+export const patchGroupLocation = async ({
+  groupId,
+  nickname,
+  location,
+}: PatchcGroupLocationValues) => {
+  const { data } = await instance.patch(
+    `${API_SUFFIX.GROUPS}/${groupId}/locations?nickname=${nickname}`,
+    { location: location },
   );
   return data;
 };
