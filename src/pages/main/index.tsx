@@ -3,12 +3,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useNavigate, useParams } from 'react-router';
 
+import L from 'leaflet';
+
 import { Footer, MeetingBox } from '@/components';
 import { useGetGroup } from '@/api/query/useGroup';
+import { LocationIcon } from '@/assets';
 
 import * as S from './styled';
-import L from 'leaflet';
-import { LocationIcon } from '@/assets';
 
 export interface TabListProps {
   name: string;
@@ -34,9 +35,9 @@ export const MainPage: React.FC = () => {
 
   const isActive = (activeTab?: string, tabName?: string) => activeTab === tabName;
 
-  var greenIcon = L.icon({
-      iconUrl: LocationIcon,
-      iconSize:     [47, 61],
+  const greenIcon = L.icon({
+    iconUrl: LocationIcon,
+    iconSize: [47, 61],
   });
 
   return (

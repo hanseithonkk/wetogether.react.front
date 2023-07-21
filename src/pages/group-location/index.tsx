@@ -2,8 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
+import L from 'leaflet';
+
 import { CreateMeetingTitle } from '@/components';
 import { UseGetGroupLocation, useGetGroup } from '@/api/query/useGroup';
+import { DestLocationIcon, LocationIcon } from '@/assets';
 
 import * as S from './styled';
 
@@ -14,7 +17,12 @@ export const GroupLocationPage: React.FC = () => {
     groupId: +(groupId ?? 0),
     nickname: nickname || '',
   });
-  console.log(data);
+
+  const greenIcon = L.icon({
+    iconUrl: DestLocationIcon,
+    iconSize: [47, 61],
+  });
+
   return (
     <>
       {data ? (
@@ -40,7 +48,7 @@ export const GroupLocationPage: React.FC = () => {
             {data?.map((value) => {
               const position = value.location.split(',');
               return (
-                <Marker position={[+position[1], +position[0]]}>
+                <Marker position={[+position[1], +position[0]]} icon={greenIcon}>
                   <Popup>{value.title}</Popup>
                 </Marker>
               );
