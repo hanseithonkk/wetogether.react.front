@@ -7,10 +7,12 @@ import { CreateMeetingState } from '@/atom';
 
 import {
   CreateCroupValues,
+  GroupLocationValues,
   GroupsResponse,
   JoinGroupValues,
   createGroup,
   getGroups,
+  groupLocation,
   joinGroups,
   leaveGroups,
 } from '../groups';
@@ -80,3 +82,11 @@ export const useCreateGroup = ({
     },
   );
 };
+
+export const UseGetGroupLocation = ({
+  groupId,
+  nickname,
+}: GroupLocationValues): UseQueryResult<GroupsResponse[]> =>
+  useQuery('UseGetGroupLocation', () => groupLocation({ groupId, nickname }), {
+    retry: 0,
+  });

@@ -44,6 +44,19 @@ export interface CreateCroupValues {
   important?: string;
 }
 
+export interface GroupLocationResults {
+  id: number;
+  userId: number;
+  meetingId: number;
+  location: string;
+  user: { id: number; nickname: string };
+}
+
+export interface GroupLocationValues {
+  groupId: number;
+  nickname: string;
+}
+
 export const getGroups = async (): Promise<GroupsResponse[]> => {
   const { data } = await instance.get(API_SUFFIX.GROUPS);
   return data;
@@ -81,5 +94,12 @@ export const createGroup = async ({
     content,
     important,
   });
+  return data;
+};
+
+export const groupLocation = async ({ groupId, nickname }: GroupLocationValues) => {
+  const { data } = await instance.get(
+    `${API_SUFFIX.GROUPS}/${groupId}/locations?nickname=${nickname}`,
+  );
   return data;
 };

@@ -13,6 +13,7 @@ import {
   MyGroupPage,
   TAB_LIST,
 } from './pages';
+import { GroupLocationPage } from './pages/group-location';
 
 export const App: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ export const App: React.FC = () => {
         <Route index element={<Navigate to={`/my-group/${MY_GROUP_LIST[0].href}`} />} />
         <Route path=":option" element={<MyGroupPage />} />
       </Route>
-      <Route path="group-location/:groupId" element={<MyGroupPage />} />
+      <Route path="group-location/:groupId" element={<GroupLocationPage />} />
     </Routes>
   );
 };
