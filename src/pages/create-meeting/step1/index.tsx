@@ -39,7 +39,7 @@ export const CreateMeetingStep1: React.FC = () => {
   return (
     <S.CreateMeetingStep1PageContainer onSubmit={handleSubmit(onValid)}>
       <S.CreateMeetingStep1PageTopSection>
-        <CreateMeetingTitle text="모임의 이름을 주어주세요." />
+        <CreateMeetingTitle text="모임 이름을 지어주세요." />
         <div>
           <S.CreateMeetingStep1PageInput
             placeholder="이름을 입력해주세요"
